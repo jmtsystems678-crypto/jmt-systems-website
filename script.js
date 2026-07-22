@@ -29,3 +29,4 @@ projectForm.addEventListener('submit', async event => {
 });
 
 document.querySelector('.menu').addEventListener('click', () => document.querySelector('.nav nav').classList.toggle('open'));
+// Trigger JMT website deployment
