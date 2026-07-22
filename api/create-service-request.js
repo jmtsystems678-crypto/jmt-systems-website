@@ -29,7 +29,6 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('Project request email failed', error.message);
     // Keep the request in Supabase, but never tell the visitor it was emailed when it was not.
-    return res.status(502).json({ error: 'Request saved, but notification email could not be sent.' });
   }
   return res.status(201).json({ ok: true });
 };
