@@ -32,6 +32,66 @@ projectForm.addEventListener('submit', async event => {
 
 document.querySelector('.menu').addEventListener('click', () => document.querySelector('.nav nav').classList.toggle('open'));
 
+// The JMT Human Capability Engine: an honest, interactive explanation of JMT's real service areas.
+(() => {
+  const engine = document.querySelector('.capability-engine');
+  if (!engine) return;
+  const areas = {
+    strategy: {
+      number: '01 / 06', title: 'Strategy & Insight',
+      copy: 'JMT uses structured thinking and systems insight to turn complex ideas into practical, high-impact solutions. Every engagement begins with clarity: understanding the challenge, the people involved, and the outcome that matters.',
+      items: ['Systems thinking', 'Strategic clarity', 'Practical solution design']
+    },
+    writing: {
+      number: '02 / 06', title: 'Writing & Publishing',
+      copy: 'JMT helps authors, students, professionals, and organisations communicate with clarity and confidence. We refine important ideas and prepare them for professional use, print, or digital publishing.',
+      items: ['Editing & proofreading', 'Professional ghostwriting', 'Book design & formatting']
+    },
+    brand: {
+      number: '03 / 06', title: 'Branding & Media',
+      copy: 'JMT creates clear and memorable brand communication that helps people recognise, trust, and engage with an organisation’s purpose. Every design is built to communicate with consistency and impact.',
+      items: ['Logo & identity design', 'Brand identity systems', 'Flyers, social designs & presentations']
+    },
+    web: {
+      number: '04 / 06', title: 'Web & Technology',
+      copy: 'JMT builds responsive digital experiences that represent a brand clearly and help it work harder. We use practical web solutions to support visibility, communication, and conversion.',
+      items: ['Business websites', 'Landing pages', 'Portfolio websites']
+    },
+    systems: {
+      number: '05 / 06', title: 'Business Systems',
+      copy: 'JMT helps organisations create the structure behind reliable performance. Clear systems reduce confusion, improve consistency, and make everyday operations easier to manage and grow.',
+      items: ['SOP development', 'Operational clarity', 'Repeatable workflows']
+    },
+    learning: {
+      number: '06 / 06', title: 'Learning & Leadership',
+      copy: 'JMT programmes and capability-focused experiences help people discover their abilities, strengthen knowledge, and grow into purposeful performance. This is where potential is developed for meaningful impact.',
+      items: ['I Am Multi-Talented', 'Zionization Conference', 'Human capability development']
+    }
+  };
+  const title = engine.querySelector('[data-engine-title]');
+  const copy = engine.querySelector('[data-engine-copy]');
+  const number = engine.querySelector('.engine-number');
+  const list = engine.querySelector('[data-engine-list]');
+  const selectArea = key => {
+    const area = areas[key];
+    if (!area) return;
+    engine.querySelectorAll('.engine-node').forEach(button => {
+      const selected = button.dataset.engine === key;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+    number.textContent = area.number;
+    title.textContent = area.title;
+    copy.textContent = area.copy;
+    list.replaceChildren(...area.items.map(item => {
+      const entry = document.createElement('li');
+      entry.textContent = item;
+      return entry;
+    }));
+  };
+  engine.querySelectorAll('.engine-node').forEach(button => button.addEventListener('click', () => selectArea(button.dataset.engine)));
+})();
+
 // Free guided assistant: answers only from JMT's approved public information.
 (() => {
   const style = document.createElement('style');
