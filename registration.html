@@ -1,1 +1,44 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JMT Systems | Program Registration</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="admin.css"></head><body><main><header><a href="index.html"><img src="assets/jmt-systems-logo.png" alt="JMT Systems"></a><span>PROGRAM REGISTRATION</span></header><section class="card"><p class="eyebrow">JMT SYSTEMS PROGRAMS</p><h1>Reserve your place.</h1><p>Submit your details and JMT will contact you with dates, payment instructions, and confirmation.</p><form id="registration-form"><select id="program"><option>I Am Multi-Talented</option><option>Zionization Conference</option></select><input id="full-name" required placeholder="Your full name"><input id="registration-email" required type="email" placeholder="Email address"><input id="phone" required placeholder="Phone / WhatsApp number"><textarea id="notes" placeholder="Anything JMT should know?" style="padding:14px;border:1px solid #d8dce2;font:14px 'DM Sans';min-height:90px"></textarea><button>Submit registration</button></form><p id="confirmation" class="message"></p></section></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app-config.js"></script><script src="registration.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JMT Systems | Programmes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main><header><a href="index.html"><img src="assets/jmt-systems-logo.png" alt="JMT Systems"></a><span>JMT PROGRAMMES</span></header>
+    <section class="card programme-card">
+      <p class="eyebrow">JMT SYSTEMS</p><h1 id="programme-title">Join a JMT programme.</h1>
+      <p id="programme-intro">Choose a programme to see its current status and next step.</p>
+      <label class="field-label" for="program">Programme</label>
+      <select id="program"><option>I Am Multi-Talented</option><option>Zionization Conference</option></select>
+      <div id="event-status" class="event-status loading">Checking programme status…</div>
+
+      <form id="priority-form" hidden>
+        <p class="form-intro">Join the Priority List and JMT will keep your details ready for the next confirmed edition.</p>
+        <input id="priority-name" required placeholder="Your full name">
+        <input id="priority-email" required type="email" placeholder="Email address">
+        <input id="priority-phone" required placeholder="Phone / WhatsApp number">
+        <input id="country" placeholder="Country (optional)">
+        <input id="occupation" placeholder="Occupation (optional)">
+        <textarea id="goals" placeholder="What do you hope to gain? (optional)"></textarea>
+        <label class="consent"><input id="email-consent" type="checkbox"> I agree to receive JMT updates about this programme.</label>
+        <button>Join Priority List</button>
+      </form>
+
+      <form id="registration-form" hidden>
+        <p class="form-intro">Complete your details, then continue to secure Paystack checkout.</p>
+        <input id="full-name" required placeholder="Your full name">
+        <input id="registration-email" required type="email" placeholder="Email address">
+        <input id="phone" required placeholder="Phone / WhatsApp number">
+        <textarea id="notes" placeholder="Anything JMT should know? (optional)"></textarea>
+        <button>Continue to secure payment</button>
+      </form>
+      <p id="confirmation" class="message"></p>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app-config.js"></script><script src="registration.js"></script>
+</body>
+</html>
