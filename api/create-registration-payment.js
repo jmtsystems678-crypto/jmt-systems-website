@@ -1,15 +1,14 @@
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   const { program, full_name, email, phone, notes } = req.body || {};
-  const prices = {
-    'I Am Multi-Talented': Number(process.env.I_AM_MULTI_TALENTED_PRICE_PESEWAS),
-    'Zionization Conference': Number(process.env.ZIONIZATION_CONFERENCE_PRICE_PESEWAS)
-  };
-  const amount = prices[program];
-  if (!program || !full_name || !email || !phone || !Number.isInteger(amount) || amount < 10) return res.status(400).json({ error: 'Registration details or program price are incomplete.' });
-  const reference = `JMT-${Date.now()}-${Math.random().toString(36).slice(2, 10).toUpperCase()}`;
   const supabaseAdminKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!program || !full_name || !email || !phone || !process.env.SUPABASE_URL || !supabaseAdminKey) return res.status(400).json({ error: 'Registration details are incomplete.' });
   const supabaseHeaders = { apikey: supabaseAdminKey, Authorization: `Bearer ${supabaseAdminKey}`, 'Content-Type': 'application/json', Prefer: 'return=representation' };
+  const eventResponse = await fetch(`${process.env.SUPABASE_URL}/rest/v1/program_events?program=eq.${encodeURIComponent(program)}&status=eq.open&is_public=eq.true&select=price_pesewas`, { headers: supabaseHeaders });
+  const events = eventResponse.ok ? await eventResponse.json() : [];
+  const amount = Number(events[0]?.price_pesewas);
+  if (!Number.isInteger(amount) || amount < 10) return res.status(409).json({ error: 'Registration is not open for this programme yet. Please join the JMT Priority List.' });
+  const reference = `JMT-${Date.now()}-${Math.random().toString(36).slice(2, 10).toUpperCase()}`;
   const recordResponse = await fetch(`${process.env.SUPABASE_URL}/rest/v1/program_registrations`, { method: 'POST', headers: supabaseHeaders, body: JSON.stringify({ program, full_name: full_name.trim(), email: email.trim(), phone: phone.trim(), notes: notes?.trim() || null, payment_status: 'awaiting_payment', payment_amount_pesewas: amount, paystack_reference: reference }) });
   if (!recordResponse.ok) {
     console.error('Supabase registration insert failed', { status: recordResponse.status, body: await recordResponse.text() });
