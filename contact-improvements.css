@@ -41,6 +41,38 @@ footer a { color: #f5f8ff; }
 
 footer small { color: #cbd6e9; }
 
+/* Header logo lockup: icon plus the JMT name and meaning */
+.brand-lockup {
+  gap: 10px;
+  letter-spacing: 0;
+}
+
+.brand-lockup .brand-logo {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 3px;
+  line-height: 1;
+}
+
+.brand-copy strong {
+  color: #061d4b;
+  font: 800 17px/1 'Manrope', sans-serif;
+  letter-spacing: -.045em;
+}
+
+.brand-copy small {
+  color: #946718;
+  font: 700 7px/1.2 'DM Sans', sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
 .program-explore {
   display: inline-flex;
   align-items: center;
@@ -71,4 +103,7 @@ footer small { color: #cbd6e9; }
 
 @media (max-width: 800px) {
   footer { padding-bottom: 110px; }
+  .brand-lockup .brand-logo { width: 46px; height: 46px; }
+  .brand-copy strong { font-size: 14px; }
+  .brand-copy small { font-size: 6px; letter-spacing: .08em; }
 }
