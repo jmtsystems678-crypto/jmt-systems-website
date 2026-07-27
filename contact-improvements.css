@@ -41,6 +41,34 @@ footer a { color: #f5f8ff; }
 
 footer small { color: #cbd6e9; }
 
+.program-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.program-explore b {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  font-size: 19px;
+  line-height: 1;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+
+.program-explore:hover b,
+.program-explore:focus-visible b {
+  transform: translateY(3px);
+  background: #d99b26;
+  border-color: #d99b26;
+}
+
 @media (max-width: 800px) {
   footer { padding-bottom: 110px; }
 }
