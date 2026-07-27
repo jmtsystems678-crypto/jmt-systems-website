@@ -30,7 +30,21 @@ projectForm.addEventListener('submit', async event => {
   }
 });
 
-document.querySelector('.menu').addEventListener('click', () => document.querySelector('.nav nav').classList.toggle('open'));
+const menuButton = document.querySelector('.menu');
+const mobileNav = document.querySelector('.nav nav');
+if (menuButton && mobileNav) {
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Open menu');
+  }));
+}
 
 // The JMT Human Capability Engine: an honest, interactive explanation of JMT's real service areas.
 (() => {
