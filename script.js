@@ -65,7 +65,7 @@ document.querySelector('.menu').addEventListener('click', () => document.querySe
     learning: {
       number: '06 / 06', title: 'Learning & Leadership',
       copy: 'JMT programmes and capability-focused experiences help people discover their abilities, strengthen knowledge, and grow into purposeful performance. This is where potential is developed for meaningful impact.',
-      items: ['I Am Multi-Talented', 'Zionization Conference', 'Human capability development']
+      items: ['I Am Multi-Talented', 'Zionization Conference']
     }
   };
   const title = engine.querySelector('[data-engine-title]');
